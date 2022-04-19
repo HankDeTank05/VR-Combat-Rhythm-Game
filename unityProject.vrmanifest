@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.vrcombatrhythmgame.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\henry\\Documents\\DePaul Spring Quarter 2022\\GAM 397 - Advanced VR Game Dev\\VR Combat Rhythm Game\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "VR Combat Rhythm Game [Testing]"
+        }
+      }
+    }
+  ]
+}
