@@ -84,6 +84,51 @@ public class NoteGridController : MonoBehaviour
 	{
         Quaternion quat = SwordNotePrefab.transform.rotation;
 
+        //   <^   ^   ^>
+        //     \  |  /
+        //      7 8 9
+        //   <- 4 5 6 ->
+        //      1 2 3
+        //     /  |  \
+        //   <v   V   v>
+
+        if (numPadRot == 7)
+		{
+            quat.eulerAngles = new Vector3(0, 0, 45);
+		}
+        else if (numPadRot == 8)
+		{
+            quat.eulerAngles = new Vector3(0, 0, 0);
+		}
+        else if (numPadRot == 9)
+		{
+            quat.eulerAngles = new Vector3(0, 0, -45);
+		}
+        else if (numPadRot == 4)
+		{
+            quat.eulerAngles = new Vector3(0, 0, 90);
+		}
+        else if (numPadRot == 5)
+		{
+            quat.eulerAngles = new Vector3(0, 0, 0);
+		}
+        else if (numPadRot == 6)
+		{
+            quat.eulerAngles = new Vector3(0, 0, -90);
+		}
+        else if (numPadRot == 1)
+		{
+            quat.eulerAngles = new Vector3(0, 0, 135);
+		}
+        else if (numPadRot == 2)
+		{
+            quat.eulerAngles = new Vector3(0, 0, 180);
+		}
+        else if (numPadRot == 3)
+		{
+            quat.eulerAngles = new Vector3(0, 0, -135);
+		}
+
         return quat;
 	}
 }
