@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShieldController : MonoBehaviour
 {
-    public GameObject leftController;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,7 @@ public class ShieldController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Shield"))
         {

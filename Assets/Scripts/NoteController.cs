@@ -26,12 +26,12 @@ public class NoteController : MonoBehaviour
         Debug.Log(moveFlag);
         if (moveFlag == true)
 		{
-            Debug.Log("Moving");
+            //Debug.Log("Moving");
             MoveObject();
 		}
 		else
 		{
-            Debug.Log("Not Moving");
+            //Debug.Log("Not Moving");
 		}
     }
 
