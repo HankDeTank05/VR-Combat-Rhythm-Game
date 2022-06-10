@@ -14,6 +14,11 @@ public class NoteController : MonoBehaviour
 
     public bool moveFlag = false;
 
+    private Vector3 vectDist;
+    private float linearDist;
+
+    public float destroyDistance = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +28,16 @@ public class NoteController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(moveFlag);
         if (moveFlag == true)
 		{
-            //Debug.Log("Moving");
             MoveObject();
-		}
-		else
-		{
-            //Debug.Log("Not Moving");
+
+            vectDist = transform.position - target.transform.position;
+            linearDist = vectDist.magnitude;
+            if (linearDist <= destroyDistance)
+			{
+                Destroy(gameObject);
+			}
 		}
     }
 

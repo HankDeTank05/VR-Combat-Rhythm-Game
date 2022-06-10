@@ -5,44 +5,51 @@ using UnityEngine;
 public class NoteGridController : MonoBehaviour
 {
 
-    public GameObject ShieldNotePrefab;
+	public GameObject ShieldNotePrefab;
     public GameObject SwordNotePrefab;
 
     public float noteSpeed = 3.0f;
 
-    //// grid points
-    //// 0,0                          1,0                             2,0                             3,0
-    //public GameObject G00Start;     public GameObject G10Start;     public GameObject G20Start;     public GameObject G30Start;
-    //public GameObject G00End;       public GameObject G10End;       public GameObject G20End;       public GameObject G30End;
-
-    //// 0,1                          1,1                             2,1                             3,1
-    //public GameObject G01Start;     public GameObject G11Start;     public GameObject G21Start;     public GameObject G31Start;
-    //public GameObject G01End;       public GameObject G11End;       public GameObject G21End;       public GameObject G31End;
-
-    //// 0,2                          1,2                             2,2                             3,2
-    //public GameObject G02Start;     public GameObject G12Start;     public GameObject G22Start;     public GameObject G32Start;
-    //public GameObject G02End;       public GameObject G12End;       public GameObject G22End;       public GameObject G32End;
-
     public GameObject[] startPoints;
     public GameObject[] endPoints;
 
+    public Vector4[] songNotes; // X = column, Y = row, Z = songTime, W = numpad rotation, with 5 being a shield note
+
     private GameObject[] activeNotes;
+
+    private float songStartTime = -1.0f;
+    private bool songPlaying = false;
+    private int indexOfNextNote = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnShieldNote(1, 1);
-        SpawnSwordNote(2, 1, 3);
+        StartSong();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+		if (songPlaying)
+		{
+            if (Time.time + songStartTime >= songNotes[indexOfNextNote].z)
+			{
+                SpawnNote(songNotes[indexOfNextNote]);
+                indexOfNextNote++;
+                if (indexOfNextNote > songNotes.Length)
+				{
+                    StopSong();
+				}
+			}
+		}
     }
 
-    void SpawnNote(bool shield, int col, int row, int numPadRot)
+    void SpawnNote(Vector4 noteVect)
 	{
+        int col = (int)noteVect.x;
+        int row = (int)noteVect.y;
+        float songTime = noteVect.z;
+        int numPadRot = (int)noteVect.w;
 
         // spawn position
         GameObject startPoint = startPoints[row * 4 + col];
@@ -54,7 +61,7 @@ public class NoteGridController : MonoBehaviour
 
         GameObject note;
 
-        if (shield)
+        if (numPadRot == 5)
 		{
             note = Instantiate(ShieldNotePrefab, spawnPos, rot);
 		}
@@ -68,16 +75,6 @@ public class NoteGridController : MonoBehaviour
 		note.GetComponent<NoteController>().SetStartEndPoints(startPoint, endPoint);
         note.GetComponent<NoteController>().SetSpeed(noteSpeed);
 		note.GetComponent<NoteController>().StartMove();
-	}
-
-    void SpawnShieldNote(int col, int row)
-	{
-        SpawnNote(true, col, row, 5);
-	}
-
-    void SpawnSwordNote(int col, int row, int numPadRot)
-	{
-        SpawnNote(false, col, row, numPadRot);
 	}
 
     Quaternion GetQuatRotation(int numPadRot)
@@ -130,5 +127,23 @@ public class NoteGridController : MonoBehaviour
 		}
 
         return quat;
+	}
+
+    void StartSong()
+    {
+        songStartTime = Time.time;
+        songPlaying = true;
+
+        //SpawnShieldNote(1, 1);
+        //SpawnNote(new Vector4(1, 1, 0.0f, 5));
+
+        //SpawnSwordNote(2, 1, 3);
+        //SpawnNote(new Vector4(2, 1, 0.0f, 3));
+    }
+    
+    void StopSong()
+	{
+        songStartTime = -1.0f;
+        songPlaying = false;
 	}
 }
