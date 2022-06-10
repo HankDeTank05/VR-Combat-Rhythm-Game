@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordController : MonoBehaviour
+public class ShieldNoteController : MonoBehaviour
 {
-    public GameObject rightController;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,6 @@ public class SwordController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //gameObject.transform.position = rightController.transform.position;
+        
     }
 }
