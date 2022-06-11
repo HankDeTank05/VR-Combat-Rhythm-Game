@@ -343,6 +343,8 @@ MonoBehaviour:
   - {x: 3, y: 1, z: 25.159, w: 6}
   - {x: 2, y: 1, z: 26.059, w: 5}
   - {x: 3, y: 0, z: 26.398, w: 8}
+  - {x: 0, y: 1, z: 26.582, w: 5}
+  - {x: 2, y: 1, z: 26.582, w: 1}
 --- !u!4 &184148267
 Transform:
   m_ObjectHideFlags: 0
