@@ -21,9 +21,13 @@ public class NoteGridController : MonoBehaviour
     private bool songPlaying = false;
     private int indexOfNextNote = 0;
 
+    AudioSource song;
+
     // Start is called before the first frame update
     void Start()
     {
+        song = GetComponent<AudioSource>();
+
         StartSong();
     }
 
@@ -32,7 +36,7 @@ public class NoteGridController : MonoBehaviour
     {
 		if (songPlaying)
 		{
-            if (Time.time + songStartTime >= songNotes[indexOfNextNote].z)
+            if (song.time >= songNotes[indexOfNextNote].z)
 			{
                 SpawnNote(songNotes[indexOfNextNote]);
                 indexOfNextNote++;
@@ -131,19 +135,20 @@ public class NoteGridController : MonoBehaviour
 
     void StartSong()
     {
-        songStartTime = Time.time;
+        //songStartTime = Time.time;
         songPlaying = true;
-
-        //SpawnShieldNote(1, 1);
-        //SpawnNote(new Vector4(1, 1, 0.0f, 5));
-
-        //SpawnSwordNote(2, 1, 3);
-        //SpawnNote(new Vector4(2, 1, 0.0f, 3));
+        song.Play();
     }
+
+    void PauseSong()
+	{
+        song.Pause();
+	}
     
     void StopSong()
 	{
-        songStartTime = -1.0f;
+        //songStartTime = -1.0f;
         songPlaying = false;
+        song.Stop();
 	}
 }
