@@ -40,6 +40,7 @@ public class NoteGridController : MonoBehaviour
 			{
                 SpawnNote(songNotes[indexOfNextNote]);
                 indexOfNextNote++;
+                Debug.Log("index of next note: " + indexOfNextNote);
                 if (indexOfNextNote > songNotes.Length)
 				{
                     StopSong();
@@ -56,6 +57,7 @@ public class NoteGridController : MonoBehaviour
         int numPadRot = (int)noteVect.w;
 
         // spawn position
+        Debug.Log(noteVect);
         GameObject startPoint = startPoints[row * 4 + col];
         GameObject endPoint = endPoints[row * 4 + col];
         Vector3 spawnPos = startPoint.transform.position;
