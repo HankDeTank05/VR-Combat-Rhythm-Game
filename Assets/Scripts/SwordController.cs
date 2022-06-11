@@ -13,10 +13,13 @@ public class SwordController : MonoBehaviour
     public Vector3 velocity;
     public Rigidbody rb;
 
+    AudioSource hitSound;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class SwordController : MonoBehaviour
             Debug.Log(accuracyThreshold);
             if (directionComparison >= accuracyThreshold)
 			{
+                hitSound.Play();
                 Destroy(other.gameObject);
 			}
 		}
