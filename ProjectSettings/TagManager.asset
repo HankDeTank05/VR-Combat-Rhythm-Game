@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Shield
   - Sword
+  - projectile
+  - FxTemporaire
+  - debug
   layers:
   - Default
   - TransparentFX
