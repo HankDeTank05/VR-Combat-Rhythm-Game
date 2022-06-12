@@ -5,12 +5,10 @@ using UnityEngine;
 public class ShieldController : MonoBehaviour
 {
 
-    AudioSource hitSound;
-
     // Start is called before the first frame update
     void Start()
     {
-        hitSound = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -23,8 +21,8 @@ public class ShieldController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Shield"))
         {
-            hitSound.Play();
             Destroy(other.gameObject);
+            // ADD SCORE CODE
         }
     }
 }

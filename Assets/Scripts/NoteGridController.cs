@@ -21,8 +21,6 @@ public class NoteGridController : MonoBehaviour
     private bool songPlaying = false;
     private int indexOfNextNote = 0;
 
-    public float spawnTimeOffset = 2.603f;
-
     AudioSource song;
 
     // Start is called before the first frame update
@@ -38,7 +36,7 @@ public class NoteGridController : MonoBehaviour
     {
 		if (songPlaying)
 		{
-            if (song.time + spawnTimeOffset >= songNotes[indexOfNextNote].z)
+            if (song.time >= songNotes[indexOfNextNote].z)
 			{
                 SpawnNote(songNotes[indexOfNextNote]);
                 indexOfNextNote++;
